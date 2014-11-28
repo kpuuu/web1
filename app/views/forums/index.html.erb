@@ -1,0 +1,33 @@
+<h2>Forums</h2>
+  <p><%= link_to 'Create New Forum', new_forum_path -%></p>
+  <table > 
+    <tr>
+      <th >Forum name</th>
+      <th >Topics</th> 
+    </tr>
+    <% @forums.each do |forum| %>
+    <tr  >
+        <td >
+          <div >
+            <%= link_to forum.name, topics_path(:forum_id => forum) -%> 
+          </div>
+
+          <div > 
+            <%= forum.description %>
+          </div>
+
+          
+          <br />
+          <small>
+            <%= link_to 'edit', edit_forum_path(forum) %>
+            <%= link_to 'delete', forum_path(forum), :method => :delete, :confirm => 'Are you sure? This will delete this entire forum.' %> 
+          </small>
+   
+      </td>
+    <td >
+      <%= forum.topics_count %>
+    </td> 
+  </tr>
+<% end %> 
+</table>
+

@@ -1,0 +1,31 @@
+<h2>Forum: <%= @forum.name %></h2>
+<h3> Topics </h3>
+
+<p>
+	<%= link_to 'post new topic', new_topic_path(:forum_id => @forum) %>
+</p>
+
+<table>
+	<tr>
+		<th>Topics</th>
+		<th>Posts</th>
+		<th>Author</th>
+	</tr>
+	<% @topics.each do |topic| -%>
+		<tr > 
+			<td >
+				<%= link_to topic.name, posts_path(:forum_id => @forum, 
+													:topic_id => topic) -%>
+				<br />
+				<small>
+					<%= link_to 'delete', topic_path(:forum_id => @forum, :id => topic),
+										  :method => :delete,
+										  :confirm => 'Are u sure?' %>
+					<%= link_to 'edit', edit_topic_path(:forum_id => @forum, :id => topic) %>
+				</small>
+			</td>
+			<td><%= topic.posts_count %></td>
+		</tr>
+	<% end %>
+	
+</table>
